@@ -2,7 +2,7 @@
 // subscriptionを利用するために、Pubsubのインスタンスを作成する
 
 const {ApolloServer, PubSub} = require('apollo-server');
-const { subscribe } = require('graphql');
+const Mutation = require('./resolver/Mutation');
 const db = require('./db')
 const Query = require('./resolver/Query')
 const Subscription = require('./resolver/Subscription')

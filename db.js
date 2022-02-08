@@ -1,7 +1,7 @@
 // db代わりのJSファイルを作成
 // ここの模擬データを使って、Query,Mutation,Subscriptionの挙動を確認する
 
-const post = [{
+const posts = [{
     id: '1',
     title: 'こころ',
     author: '夏目漱石'
