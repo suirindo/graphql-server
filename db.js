@@ -10,7 +10,7 @@ const posts = [{
     title: '舞姫',
     author: '森鴎外'
 },{
-    id:'3',
+    id: '3',
     title: '羅生門',
     author: '芥川龍之介'
 }]
