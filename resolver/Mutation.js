@@ -39,14 +39,14 @@ const Mutation = {
         return post
     },
     deletePost(parent, args, { db, pubsub }, info) {
-        const post = db.post.find((post) => post.id === args.id)
+        const post = db.posts.find((post) => post.id === args.id)
         const postIndex = db.posts.findIndex((post) => post.id === args.id)
 
         if(postIndex === -1) {
             throw new Error('Post not found')
         }
         // 模擬データベース更新
-        db.post.splice(postIndex, 1)
+        db.posts.splice(postIndex, 1)
         // サブスクリプション着火、トピック名とデータを指定
         pubsub.publish('post', {
             post: {

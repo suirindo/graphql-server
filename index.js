@@ -1,12 +1,12 @@
 // サーバーを起動させるための処理
 // subscriptionを利用するために、Pubsubのインスタンスを作成する
 
-const {ApolloServer, PubSub} = require('apollo-server');
-const Mutation = require('./resolver/Mutation');
-const db = require('./db')
-const Query = require('./resolver/Query')
-const Subscription = require('./resolver/Subscription')
-const typeDefs = require('./schema')
+const {ApolloServer, PubSub} = require('apollo-server')
+const db            = require('./db')
+const Query         = require('./resolver/Query')
+const Mutation      = require('./resolver/Mutation')
+const Subscription  = require('./resolver/Subscription')
+const typeDefs      = require('./schema')
 
 // PubSubのインスタンスを作成、サブスクリプションが利用可能になる
 const pubsub = new PubSub()
