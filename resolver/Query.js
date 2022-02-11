@@ -6,7 +6,7 @@ const { printSchema } = require("graphql")
 const Query = {
     users: async(root, args, { prisma }, info) => {
         try {
-            return prisma.users():
+            return prisma.users();
         }catch (error){
             throw error;
         }

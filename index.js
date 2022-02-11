@@ -2,11 +2,14 @@
 // subscriptionを利用するために、Pubsubのインスタンスを作成する
 
 const {ApolloServer, PubSub} = require('apollo-server')
-const db            = require('./db')
 const Query         = require('./resolver/Query')
 const Mutation      = require('./resolver/Mutation')
 const Subscription  = require('./resolver/Subscription')
 const typeDefs      = require('./schema')
+const db            = require('./db')
+
+// datamodel.prismaファイルから生成されたPrismaインスタンス
+const{ prisma } = require('./prisma/generated/prisma-client')
 
 // PubSubのインスタンスを作成、サブスクリプションが利用可能になる
 const pubsub = new PubSub()
@@ -20,7 +23,8 @@ const server = new ApolloServer({
     },
     context: {
         db,
-        pubsub
+        pubsub,
+        prisma
     }
 })
 
