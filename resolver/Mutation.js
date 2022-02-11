@@ -1,5 +1,8 @@
 // Mutationのリゾルバ関数では、dbの更新とSubscriptionの着火をしている
 
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
 const Mutation = {
     createPost(parent, args, { db, pubsub }, info) {
         const postNumTotal = String(db.posts.length + 1)
@@ -56,6 +59,36 @@ const Mutation = {
          })
         return post
     },
+    async createUser(parent, args, { prisma }, info) {
+        const { data: { email, name, password } } = args;
+        const user = await prisma.createUser({
+            email,
+            name,
+            // bcryptでパスワードをハッシュ化
+            password: bcrypt.hashSync(password, 10)
+        });
+        return {
+            user,
+            //サーバーがJWTトークンを発行
+            token: jwt.sign(user.id, 'supersecret')
+        }
+    },
+    async login(parent, args, { prisma }, info) {
+        const { data: { email, password } } = args;
+        // メールアドレスと照合
+        const [ user ] = await prisma.users({
+            where: {
+                email
+            }
+        })
+        if (!user) throw new Error('Unable to Login');
+        // パスワードと照合
+        const isMatch = bcrypt.compareSync(password, user.password);
+        if (!isMatch) throw new Error('Unable to Login');
+        return{
+            user,
+            token : jwt.sign(user.id, 'supersecret')
+        };
+    }
 }
-
 module.exports = Mutation

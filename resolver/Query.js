@@ -1,7 +1,16 @@
 // リゾルバ関数の用意
 // 引数の有無で条件分岐をしている
 
+const { printSchema } = require("graphql")
+
 const Query = {
+    users: async(root, args, { prisma }, info) => {
+        try {
+            return prisma.users():
+        }catch (error){
+            throw error;
+        }
+    },
     posts(parent, args, { db }, info) {
         // クエリを書いたときに引数が「ない」時は模擬データベースの内容をすべて表示
         if(!args.query){
