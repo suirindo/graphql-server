@@ -13,11 +13,11 @@ services:
         databases:
           default:
             connector: postgres
-            host: xxxxxxxxxxxxxxxxxxxxxxxxxxxx
-            database: xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            host: ec2-54-235-98-1.compute-1.amazonaws.com
+            database: dcvndnj6bhbq4j
             schema: public
-            user: xxxxxxxxxxxxxxxxxxxxxxxxxxxx
-            password: xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            user: mfbjqgbjakmsul
+            password: 37fa4b37db8e48e9f2258ea527c8fcef0f2bc9078e28e4226940bbcddd9166e1
             ssl: true
             rawAccess: true
             port: '5432'
