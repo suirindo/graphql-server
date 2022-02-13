@@ -24,6 +24,8 @@ type Subscription {
 input CreatePostInput {
     title: String!
     author: String!
+    #投稿するユーザーのid
+    postedUser: ID!
 }
 
 input UpdatePostInput {
@@ -35,6 +37,11 @@ type Post {
     id: ID!
     title: String!
     author: String!
+    #リレーション
+    postedUser: User!
+    #作成時間と更新時間
+    updatedAt: String!
+    createdAt: String!
 }
 
 enum MutationType {
@@ -69,6 +76,12 @@ type User {
     name: String!
     email: String
     password: String!
+    #リレーション
+    posts: [Post!]!
+    #作成時間と更新時間
+    updatedAt: String!
+    createdAt: String!
+
 }
 `
 module.exports = typeDefs;

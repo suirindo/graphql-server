@@ -3,10 +3,16 @@ type User {
   name: String!
   email: String! @unique
   password: String!
+  posts:[Post!]!
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
 }
 
 type Post {
   id: ID! @id
   title: String!
   author: String!
+  postedUser: User!
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
 }
