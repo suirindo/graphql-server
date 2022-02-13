@@ -5,8 +5,10 @@ const {ApolloServer, PubSub} = require('apollo-server')
 const Query         = require('./resolver/Query')
 const Mutation      = require('./resolver/Mutation')
 const Subscription  = require('./resolver/Subscription')
+const User          = require('./resolver/User')
+const Post          = require('./resolver/Post')
 const typeDefs      = require('./schema')
-const db            = require('./db')
+//const db            = require('./db')
 
 // datamodel.prismaファイルから生成されたPrismaインスタンス
 const{ prisma } = require('./prisma/generated/prisma-client')
@@ -20,12 +22,17 @@ const server = new ApolloServer({
         Query,
         Mutation,
         Subscription,
+        User,
+        Post
     },
-    context: {
-        db,
+    context(request) {
+        return{
+        //db,
         pubsub,
-        prisma
+        prisma,
+        request
     }
+    },
 })
 
 server.listen().then(({ url, subscriptionsUrl }) => {
