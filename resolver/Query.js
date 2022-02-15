@@ -1,40 +1,3 @@
-// リゾルバ関数の用意
-// 引数の有無で条件分岐をしている
-
-import gql from 'graphql-tag'
-
-export const ALL_POSTS = gql`
-query{
-    posts{
-        id
-        title
-        author
-        postedUser{
-            id
-            name
-        }
-        updatedAt
-        createdAt
-    }
-}
-`
-
-export const ALL_USERS = gql`
-query{
-    users{
-        id
-        name
-        email
-        updatedAt
-    posts{
-        title
-        author
-    }
-    }
-}
-`
-const { printSchema } = require("graphql")
-
 const Query = {
     users: async(root, args, { prisma }, info) => {
         try {
@@ -52,6 +15,51 @@ const Query = {
             throw error;
         }
     }
+}
+module.exports = Query
+
+// // リゾルバ関数の用意
+// // 引数の有無で条件分岐をしている
+
+// import gql from 'graphql-tag'
+
+
+// export const ALL_POSTS = gql`
+// query{
+//     posts{
+//         id
+//         title
+//         author
+//         postedUser{
+//             id
+//             name
+//         }
+//         updatedAt
+//         createdAt
+//     }
+// }
+// `
+
+// export const ALL_USERS = gql`
+// query{
+//     users{
+//         id
+//         name
+//         email
+//         updatedAt
+//     posts{
+//         title
+//         author
+//     }
+//     }
+// }
+// `
+// const { printSchema } = require("graphql")
+
+
+
+
+
     // posts(parent, args, { db }, info) {
     //     // クエリを書いたときに引数が「ない」時は模擬データベースの内容をすべて表示
     //     if(!args.query){
@@ -65,5 +73,3 @@ const Query = {
     //         })
     //     }
     // }
-}
-module.exports = Query

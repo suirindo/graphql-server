@@ -1,4 +1,4 @@
-const { ModuleKind } = require("typescript")
+//const { ModuleKind } = require("typescript")
 
 const Post = {
     // type PostでリレーションしたpostedUserフィールドの情報取得
