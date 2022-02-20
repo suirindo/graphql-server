@@ -114,7 +114,7 @@ const Mutation = {
         return {
             user,
             //サーバーがJWTトークンを発行
-            token: jwt.sign(user.id, 'supersecret')
+            token: jwt.sign(user.id, process.env.JWT_SECRET)
         }
     },
     async login(parent, args, { prisma }, info) {
@@ -131,9 +131,9 @@ const Mutation = {
         if (!isMatch) throw new Error('Unable to Login');
         return{
             user,
-            token : jwt.sign(user.id, 'supersecret')
+            token : jwt.sign(user.id, process.env.JWT_SECRET)
         };
-    }
+    },
 }
 module.exports = Mutation
 

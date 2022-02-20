@@ -1,4 +1,5 @@
-endpoint: http://localhost:4466
+#endpoint: ${env:PRISMA_ENDPOINT}
+endpoint: https://mybookapp-2d3466978c.herokuapp.com/myBookApp/prod
 datamodel: datamodel.prisma
 
 generate:

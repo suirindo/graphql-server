@@ -27,15 +27,16 @@ const server = new ApolloServer({
     },
     context(request) {
         return{
-        //db,
         pubsub,
         prisma,
         request
     }
-    },
+  },
+  introspection: true,
+  playground: true,
 })
 
-server.listen().then(({ url, subscriptionsUrl }) => {
+server.listen( {port: process.env.PORT|| 4000}).then(({ url, subscriptionsUrl }) => {
     console.log(`Server ready at ${url}`);
     console.log(`Subscriptions ready at ${subscriptionsUrl}`);
 });
